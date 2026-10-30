@@ -29,17 +29,175 @@ public class RegistrarLloguer extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanelDadesLloguer = new javax.swing.JPanel();
+        jLabelNumRegistre = new javax.swing.JLabel();
+        jTextFieldNumRegistre = new javax.swing.JTextField();
+        jLabelUsuari = new javax.swing.JLabel();
+        jTextFieldNumRegistre1 = new javax.swing.JTextField();
+        jButtonSelecUsuari = new javax.swing.JButton();
+        jLabelJocElegit = new javax.swing.JLabel();
+        jTextFieldJocElegit = new javax.swing.JTextField();
+        jButtonSelecJoc = new javax.swing.JButton();
+        jLabelDataInici = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
+        jLabelDataInici1 = new javax.swing.JLabel();
+        jSpinner2 = new javax.swing.JSpinner();
+        jPanelPlataforma = new javax.swing.JPanel();
+        jRadioButtonPC = new javax.swing.JRadioButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(237, 242, 247));
+
+        jPanelDadesLloguer.setBackground(new java.awt.Color(237, 242, 247));
+        jPanelDadesLloguer.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dades del lloguer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(75, 112, 160))); // NOI18N
+
+        jLabelNumRegistre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelNumRegistre.setForeground(new java.awt.Color(75, 112, 160));
+        jLabelNumRegistre.setText("Núm. de registre:");
+
+        jTextFieldNumRegistre.setForeground(new java.awt.Color(75, 112, 160));
+
+        jLabelUsuari.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelUsuari.setForeground(new java.awt.Color(75, 112, 160));
+        jLabelUsuari.setText("Usuari:");
+
+        jTextFieldNumRegistre1.setForeground(new java.awt.Color(75, 112, 160));
+
+        jButtonSelecUsuari.setBackground(new java.awt.Color(224, 232, 238));
+        jButtonSelecUsuari.setForeground(new java.awt.Color(75, 112, 160));
+        jButtonSelecUsuari.setText("Seleccionar...");
+
+        jLabelJocElegit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelJocElegit.setForeground(new java.awt.Color(75, 112, 160));
+        jLabelJocElegit.setText("Joc elegit:");
+
+        jTextFieldJocElegit.setForeground(new java.awt.Color(75, 112, 160));
+
+        jButtonSelecJoc.setBackground(new java.awt.Color(224, 232, 238));
+        jButtonSelecJoc.setForeground(new java.awt.Color(75, 112, 160));
+        jButtonSelecJoc.setText("Seleccionar...");
+
+        jLabelDataInici.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelDataInici.setForeground(new java.awt.Color(75, 112, 160));
+        jLabelDataInici.setText("Data d'inici:");
+
+        jSpinner1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jSpinner1.setModel(new javax.swing.SpinnerDateModel());
+
+        jLabelDataInici1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelDataInici1.setForeground(new java.awt.Color(75, 112, 160));
+        jLabelDataInici1.setText("Data de tornada: ");
+
+        jSpinner2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jSpinner2.setModel(new javax.swing.SpinnerDateModel());
+
+        javax.swing.GroupLayout jPanelDadesLloguerLayout = new javax.swing.GroupLayout(jPanelDadesLloguer);
+        jPanelDadesLloguer.setLayout(jPanelDadesLloguerLayout);
+        jPanelDadesLloguerLayout.setHorizontalGroup(
+            jPanelDadesLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDadesLloguerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelDadesLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelDadesLloguerLayout.createSequentialGroup()
+                        .addGroup(jPanelDadesLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelDadesLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanelDadesLloguerLayout.createSequentialGroup()
+                                    .addComponent(jLabelNumRegistre)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jTextFieldNumRegistre1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabelUsuari)
+                                .addGroup(jPanelDadesLloguerLayout.createSequentialGroup()
+                                    .addComponent(jTextFieldNumRegistre, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButtonSelecUsuari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabelJocElegit)
+                            .addGroup(jPanelDadesLloguerLayout.createSequentialGroup()
+                                .addComponent(jTextFieldJocElegit, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonSelecJoc, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)))
+                        .addContainerGap(33, Short.MAX_VALUE))
+                    .addGroup(jPanelDadesLloguerLayout.createSequentialGroup()
+                        .addComponent(jLabelDataInici)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelDadesLloguerLayout.createSequentialGroup()
+                        .addGroup(jPanelDadesLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelDataInici1)
+                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        jPanelDadesLloguerLayout.setVerticalGroup(
+            jPanelDadesLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDadesLloguerLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanelDadesLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelNumRegistre)
+                    .addComponent(jTextFieldNumRegistre1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabelUsuari)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelDadesLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldNumRegistre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSelecUsuari))
+                .addGap(18, 18, 18)
+                .addComponent(jLabelJocElegit)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelDadesLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldJocElegit, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSelecJoc))
+                .addGap(18, 18, 18)
+                .addComponent(jLabelDataInici)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelDataInici1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
+
+        jPanelPlataforma.setBackground(new java.awt.Color(237, 242, 247));
+        jPanelPlataforma.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Plataforma", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(75, 112, 160))); // NOI18N
+
+        jRadioButtonPC.setForeground(new java.awt.Color(75, 112, 160));
+        jRadioButtonPC.setText("PC");
+
+        javax.swing.GroupLayout jPanelPlataformaLayout = new javax.swing.GroupLayout(jPanelPlataforma);
+        jPanelPlataforma.setLayout(jPanelPlataformaLayout);
+        jPanelPlataformaLayout.setHorizontalGroup(
+            jPanelPlataformaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPlataformaLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jRadioButtonPC, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(238, Short.MAX_VALUE))
+        );
+        jPanelPlataformaLayout.setVerticalGroup(
+            jPanelPlataformaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPlataformaLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jRadioButtonPC)
+                .addContainerGap(109, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jPanelDadesLloguer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanelPlataforma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelDadesLloguer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelPlataforma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -83,5 +241,20 @@ public class RegistrarLloguer extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonSelecJoc;
+    private javax.swing.JButton jButtonSelecUsuari;
+    private javax.swing.JLabel jLabelDataInici;
+    private javax.swing.JLabel jLabelDataInici1;
+    private javax.swing.JLabel jLabelJocElegit;
+    private javax.swing.JLabel jLabelNumRegistre;
+    private javax.swing.JLabel jLabelUsuari;
+    private javax.swing.JPanel jPanelDadesLloguer;
+    private javax.swing.JPanel jPanelPlataforma;
+    private javax.swing.JRadioButton jRadioButtonPC;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JTextField jTextFieldJocElegit;
+    private javax.swing.JTextField jTextFieldNumRegistre;
+    private javax.swing.JTextField jTextFieldNumRegistre1;
     // End of variables declaration//GEN-END:variables
 }

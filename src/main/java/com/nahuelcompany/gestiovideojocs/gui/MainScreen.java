@@ -17,6 +17,15 @@ public class MainScreen extends javax.swing.JFrame {
      */
     public MainScreen() {
         initComponents();
+        
+        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Ninguna celda será editable
+            }
+        };
+    
+        jTableLloguers.setModel(model);
     }
 
     /**
@@ -28,29 +37,115 @@ public class MainScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jPanelLloguers = new javax.swing.JPanel();
+        jLabelLloguers = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableLloguers = new javax.swing.JTable();
+        jLabelTotalLloguers = new javax.swing.JLabel();
+        jMenuBarMenuPrincipal = new javax.swing.JMenuBar();
+        jMenuLloguer = new javax.swing.JMenu();
+        jMenuItemRegistrar = new javax.swing.JMenuItem();
+        jMenuItemTornar = new javax.swing.JMenuItem();
+        jMenuUsuari = new javax.swing.JMenu();
+        jMenuItemCrearUsuari = new javax.swing.JMenuItem();
+        jMenuItemBorrarUsuari = new javax.swing.JMenuItem();
+        jMenuJoc = new javax.swing.JMenu();
+        jMenuItemCrearJoc = new javax.swing.JMenuItem();
+        jMenuItemBorrarJoc = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("Lloguer");
-        jMenuBar1.add(jMenu1);
+        jLabelLloguers.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelLloguers.setForeground(new java.awt.Color(75, 112, 160));
+        jLabelLloguers.setText("Total de lloguers:");
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        jTableLloguers.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableLloguers);
 
-        setJMenuBar(jMenuBar1);
+        jLabelTotalLloguers.setForeground(new java.awt.Color(75, 112, 160));
+        jLabelTotalLloguers.setText("0");
+
+        javax.swing.GroupLayout jPanelLloguersLayout = new javax.swing.GroupLayout(jPanelLloguers);
+        jPanelLloguers.setLayout(jPanelLloguersLayout);
+        jPanelLloguersLayout.setHorizontalGroup(
+            jPanelLloguersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLloguersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelLloguersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE)
+                    .addGroup(jPanelLloguersLayout.createSequentialGroup()
+                        .addComponent(jLabelLloguers)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelTotalLloguers, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        jPanelLloguersLayout.setVerticalGroup(
+            jPanelLloguersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLloguersLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelLloguersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelLloguers)
+                    .addComponent(jLabelTotalLloguers)))
+        );
+
+        jMenuLloguer.setText("Lloguer");
+
+        jMenuItemRegistrar.setText("Registrar");
+        jMenuLloguer.add(jMenuItemRegistrar);
+
+        jMenuItemTornar.setText("Tornar");
+        jMenuLloguer.add(jMenuItemTornar);
+
+        jMenuBarMenuPrincipal.add(jMenuLloguer);
+
+        jMenuUsuari.setText("Usuari");
+
+        jMenuItemCrearUsuari.setText("Crear");
+        jMenuUsuari.add(jMenuItemCrearUsuari);
+
+        jMenuItemBorrarUsuari.setText("Borrar");
+        jMenuUsuari.add(jMenuItemBorrarUsuari);
+
+        jMenuBarMenuPrincipal.add(jMenuUsuari);
+
+        jMenuJoc.setText("Joc");
+
+        jMenuItemCrearJoc.setText("Crear");
+        jMenuJoc.add(jMenuItemCrearJoc);
+
+        jMenuItemBorrarJoc.setText("Borrar");
+        jMenuJoc.add(jMenuItemBorrarJoc);
+
+        jMenuBarMenuPrincipal.add(jMenuJoc);
+
+        setJMenuBar(jMenuBarMenuPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 754, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelLloguers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 510, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelLloguers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -82,8 +177,20 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel jLabelLloguers;
+    private javax.swing.JLabel jLabelTotalLloguers;
+    private javax.swing.JMenuBar jMenuBarMenuPrincipal;
+    private javax.swing.JMenuItem jMenuItemBorrarJoc;
+    private javax.swing.JMenuItem jMenuItemBorrarUsuari;
+    private javax.swing.JMenuItem jMenuItemCrearJoc;
+    private javax.swing.JMenuItem jMenuItemCrearUsuari;
+    private javax.swing.JMenuItem jMenuItemRegistrar;
+    private javax.swing.JMenuItem jMenuItemTornar;
+    private javax.swing.JMenu jMenuJoc;
+    private javax.swing.JMenu jMenuLloguer;
+    private javax.swing.JMenu jMenuUsuari;
+    private javax.swing.JPanel jPanelLloguers;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableLloguers;
     // End of variables declaration//GEN-END:variables
 }
