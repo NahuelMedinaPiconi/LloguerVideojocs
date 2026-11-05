@@ -102,9 +102,11 @@ public class MainScreen extends javax.swing.JFrame {
         jMenuLloguer.setText("Lloguer");
 
         jMenuItemRegistrar.setText("Registrar");
+        jMenuItemRegistrar.addActionListener(this::jMenuItemRegistrarActionPerformed);
         jMenuLloguer.add(jMenuItemRegistrar);
 
         jMenuItemTornar.setText("Tornar");
+        jMenuItemTornar.addActionListener(this::jMenuItemTornarActionPerformed);
         jMenuLloguer.add(jMenuItemTornar);
 
         jMenuBarMenuPrincipal.add(jMenuLloguer);
@@ -112,6 +114,7 @@ public class MainScreen extends javax.swing.JFrame {
         jMenuUsuari.setText("Usuari");
 
         jMenuItemCrearUsuari.setText("Crear");
+        jMenuItemCrearUsuari.addActionListener(this::jMenuItemCrearUsuariActionPerformed);
         jMenuUsuari.add(jMenuItemCrearUsuari);
 
         jMenuItemBorrarUsuari.setText("Borrar");
@@ -122,6 +125,7 @@ public class MainScreen extends javax.swing.JFrame {
         jMenuJoc.setText("Joc");
 
         jMenuItemCrearJoc.setText("Crear");
+        jMenuItemCrearJoc.addActionListener(this::jMenuItemCrearJocActionPerformed);
         jMenuJoc.add(jMenuItemCrearJoc);
 
         jMenuItemBorrarJoc.setText("Borrar");
@@ -150,6 +154,26 @@ public class MainScreen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItemRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRegistrarActionPerformed
+        RegistrarLloguer registrar = new RegistrarLloguer(this, true);
+        registrar.setVisible(true);
+    }//GEN-LAST:event_jMenuItemRegistrarActionPerformed
+
+    private void jMenuItemCrearUsuariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCrearUsuariActionPerformed
+        CrearUsuari crearUsuari = new CrearUsuari(this, true);
+        crearUsuari.setVisible(true);
+    }//GEN-LAST:event_jMenuItemCrearUsuariActionPerformed
+
+    private void jMenuItemCrearJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCrearJocActionPerformed
+        CrearJoc crearJoc = new CrearJoc(this, true);
+        crearJoc.setVisible(true);
+    }//GEN-LAST:event_jMenuItemCrearJocActionPerformed
+
+    private void jMenuItemTornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTornarActionPerformed
+        TornarLloguer tornar = new TornarLloguer(this, true);
+        tornar.setVisible(true);
+    }//GEN-LAST:event_jMenuItemTornarActionPerformed
 
     /**
      * @param args the command line arguments

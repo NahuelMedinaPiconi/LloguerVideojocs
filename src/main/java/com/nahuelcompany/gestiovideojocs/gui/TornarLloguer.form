@@ -253,6 +253,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Marcar com a retornat"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonTornarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonCancelar">
               <Properties>
@@ -264,6 +267,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Tancar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancelarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelUsuariName">
               <Properties>

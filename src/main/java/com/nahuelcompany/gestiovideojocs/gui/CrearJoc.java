@@ -189,10 +189,12 @@ public class CrearJoc extends javax.swing.JDialog {
         jButtonAcceptar.setBackground(new java.awt.Color(46, 155, 74));
         jButtonAcceptar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAcceptar.setText("Confirmar");
+        jButtonAcceptar.addActionListener(this::jButtonAcceptarActionPerformed);
 
         jButtonCancelar.setBackground(new java.awt.Color(210, 220, 229));
         jButtonCancelar.setForeground(new java.awt.Color(75, 112, 160));
         jButtonCancelar.setText("Cancel·lar");
+        jButtonCancelar.addActionListener(this::jButtonCancelarActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -267,42 +269,17 @@ public class CrearJoc extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxSwitch2ActionPerformed
 
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonAcceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcceptarActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButtonAcceptarActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                CrearJoc dialog = new CrearJoc(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupPlataformes;
