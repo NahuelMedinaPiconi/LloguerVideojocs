@@ -1,0 +1,23 @@
+[33mcommit f25c6c7a062fd42071401a6bbf1b5c108e870403[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: Nahuel <gerreropiconi@gmail.com>
+Date:   Thu Nov 5 16:53:40 2026 +0100
+
+    feat: pantalla de crear joc acabada
+
+[33mcommit f039d30217287591339ecfeec2db5323c7c1d6e8[m
+Author: Nahuel <gerreropiconi@gmail.com>
+Date:   Thu Nov 5 10:23:04 2026 +0100
+
+    feat: implementació de la pantalla de Tornar lloguer
+
+[33mcommit a8092847bef7e6b25d13fb5846c1c7167f089ef4[m
+Author: Nahuel <gerreropiconi@gmail.com>
+Date:   Fri Oct 30 13:47:32 2026 +0100
+
+    feat: pantalla RegistrarLloguer feta
+
+[33mcommit b7f40558f4878c4e17e256f7bda42371845f4bc9[m
+Author: Nahuel <gerreropiconi@gmail.com>
+Date:   Fri Oct 23 13:43:20 2026 +0200
+
+    feat: pantalles creades
