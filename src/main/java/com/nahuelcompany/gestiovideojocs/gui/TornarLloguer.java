@@ -29,17 +29,179 @@ public class TornarLloguer extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableLloguers = new javax.swing.JTable();
+        jPanelDetalls = new javax.swing.JPanel();
+        jLabelJoc = new javax.swing.JLabel();
+        jLabelUsuari = new javax.swing.JLabel();
+        jLabelPlataforma = new javax.swing.JLabel();
+        jLabelData = new javax.swing.JLabel();
+        jButtonTornar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
+        jLabelUsuariName = new javax.swing.JLabel();
+        jLabelJocName = new javax.swing.JLabel();
+        jLabelPlataformaName = new javax.swing.JLabel();
+        jLabelDataName = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel2.setBackground(new java.awt.Color(237, 242, 247));
+
+        jTableLloguers.setBackground(new java.awt.Color(237, 242, 247));
+        jTableLloguers.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 247)));
+        jTableLloguers.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableLloguers);
+
+        jPanelDetalls.setBackground(new java.awt.Color(237, 242, 247));
+        jPanelDetalls.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(205, 223, 236), 1, true));
+
+        jLabelJoc.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelJoc.setForeground(new java.awt.Color(75, 112, 160));
+        jLabelJoc.setText("Joc:");
+
+        jLabelUsuari.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelUsuari.setForeground(new java.awt.Color(75, 112, 160));
+        jLabelUsuari.setText("Usuari:");
+
+        jLabelPlataforma.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelPlataforma.setForeground(new java.awt.Color(75, 112, 160));
+        jLabelPlataforma.setText("Plataforma:");
+
+        jLabelData.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelData.setForeground(new java.awt.Color(75, 112, 160));
+        jLabelData.setText("Data d'inici:");
+
+        jButtonTornar.setBackground(new java.awt.Color(46, 155, 74));
+        jButtonTornar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonTornar.setText("Marcar com a retornat");
+
+        jButtonCancelar.setBackground(new java.awt.Color(210, 220, 229));
+        jButtonCancelar.setForeground(new java.awt.Color(75, 112, 160));
+        jButtonCancelar.setText("Tancar");
+
+        jLabelUsuariName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelUsuariName.setForeground(new java.awt.Color(75, 112, 160));
+        jLabelUsuariName.setText("A");
+
+        jLabelJocName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelJocName.setForeground(new java.awt.Color(75, 112, 160));
+        jLabelJocName.setText("A");
+
+        jLabelPlataformaName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelPlataformaName.setForeground(new java.awt.Color(75, 112, 160));
+        jLabelPlataformaName.setText("A");
+
+        jLabelDataName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelDataName.setForeground(new java.awt.Color(75, 112, 160));
+        jLabelDataName.setText("A");
+
+        javax.swing.GroupLayout jPanelDetallsLayout = new javax.swing.GroupLayout(jPanelDetalls);
+        jPanelDetalls.setLayout(jPanelDetallsLayout);
+        jPanelDetallsLayout.setHorizontalGroup(
+            jPanelDetallsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDetallsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelDetallsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelDetallsLayout.createSequentialGroup()
+                        .addComponent(jLabelJoc, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelJocName, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonTornar, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelDetallsLayout.createSequentialGroup()
+                        .addComponent(jLabelUsuari, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelUsuariName, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanelDetallsLayout.createSequentialGroup()
+                        .addGroup(jPanelDetallsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelDetallsLayout.createSequentialGroup()
+                                .addComponent(jLabelPlataforma, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelPlataformaName, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelDetallsLayout.createSequentialGroup()
+                                .addComponent(jLabelData, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelDataName, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19))
+        );
+        jPanelDetallsLayout.setVerticalGroup(
+            jPanelDetallsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDetallsLayout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(jPanelDetallsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonTornar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelDetallsLayout.createSequentialGroup()
+                        .addGroup(jPanelDetallsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelJoc)
+                            .addComponent(jLabelJocName))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelDetallsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelUsuari)
+                            .addComponent(jLabelUsuariName))))
+                .addGroup(jPanelDetallsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelDetallsLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelDetallsLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelDetallsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelPlataforma)
+                            .addComponent(jLabelPlataformaName))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelDetallsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelData)
+                            .addComponent(jLabelDataName))))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
+                    .addComponent(jPanelDetalls, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanelDetalls, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 802, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 478, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -83,5 +245,19 @@ public class TornarLloguer extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonTornar;
+    private javax.swing.JLabel jLabelData;
+    private javax.swing.JLabel jLabelDataName;
+    private javax.swing.JLabel jLabelJoc;
+    private javax.swing.JLabel jLabelJocName;
+    private javax.swing.JLabel jLabelPlataforma;
+    private javax.swing.JLabel jLabelPlataformaName;
+    private javax.swing.JLabel jLabelUsuari;
+    private javax.swing.JLabel jLabelUsuariName;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanelDetalls;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableLloguers;
     // End of variables declaration//GEN-END:variables
 }
