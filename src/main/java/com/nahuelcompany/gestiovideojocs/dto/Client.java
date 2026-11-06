@@ -4,21 +4,26 @@
  */
 package com.nahuelcompany.gestiovideojocs.dto;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Client {
 
     private int id;
     private String name;
-    private String contact;
+    private String nationalId;
+    private String phone;
+    private LocalDate registrationDate;
 
     public Client() {
     }
 
-    public Client(int id, String name, String contact) {
+    public Client(int id,String name, String nationalId, String phone, LocalDate registrationDate) {
         this.id = id;
         this.name = name;
-        this.contact = contact;
+        this.nationalId = nationalId;
+        this.phone = phone;
+        this.registrationDate = registrationDate;
     }
 
     public int getId() {
@@ -37,12 +42,28 @@ public class Client {
         this.name = name;
     }
 
-    public String getContact() {
-        return contact;
+    public String getNationalId() {
+        return nationalId;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setNationalId(String nationalId) {
+        this.nationalId = nationalId;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public LocalDate getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(LocalDate registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
     @Override
@@ -64,6 +85,10 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{id=" + id + ", name=" + name + ", contact=" + contact + "}";
+        return "Client{id=" + id
+                + ", name=" + name
+                + ", nationalId=" + nationalId
+                + ", phone=" + phone
+                + ", registrationDate=" + registrationDate + "}";
     }
 }

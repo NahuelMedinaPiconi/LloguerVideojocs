@@ -3,6 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package com.nahuelcompany.gestiovideojocs.gui;
+import com.nahuelcompany.gestiovideojocs.BusinessLogic.DataManager;
+import com.nahuelcompany.gestiovideojocs.dto.BusinessException;
+import com.nahuelcompany.gestiovideojocs.dto.Client;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -11,6 +21,8 @@ package com.nahuelcompany.gestiovideojocs.gui;
 public class CrearUsuari extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CrearUsuari.class.getName());
+    private Client usuariCreat = null;   // <-- cambia "Usuari" por el nombre de tu clase
+    private static final DateTimeFormatter FORMAT_DATA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     /**
      * Creates new form AfegirUsuari
@@ -18,6 +30,37 @@ public class CrearUsuari extends javax.swing.JDialog {
     public CrearUsuari(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(parent);
+
+        jButtonAcceptar.setEnabled(false);
+        configurarValidacio();
+    }
+    
+    private void configurarValidacio() {
+        DocumentListener listener = new DocumentListener() {
+            @Override public void insertUpdate(DocumentEvent e)  { validarCamps(); }
+            @Override public void removeUpdate(DocumentEvent e)  { validarCamps(); }
+            @Override public void changedUpdate(DocumentEvent e) { validarCamps(); }
+        };
+
+        JTextField[] obligatoris = {
+            jTextFieldNom, jTextFieldLlinatge1, jTextFieldLlinatge2,
+            jTextFieldDNI, jTextFieldTelefon
+        };
+        for (JTextField camp : obligatoris) {
+            camp.getDocument().addDocumentListener(listener);
+        }
+    }
+    
+    private void validarCamps() {
+        boolean complet =
+                !jTextFieldNom.getText().isBlank()
+                && !jTextFieldLlinatge1.getText().isBlank()
+                && !jTextFieldLlinatge2.getText().isBlank()
+                && !jTextFieldDNI.getText().isBlank()
+                && !jTextFieldTelefon.getText().isBlank();
+
+        jButtonAcceptar.setEnabled(complet);
     }
 
     /**
@@ -184,6 +227,34 @@ public class CrearUsuari extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonAcceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcceptarActionPerformed
+        LocalDate dataRegistre;
+        String textData = jTextFieldDataRegistre.getText().trim();
+
+        if (textData.isEmpty()) {
+            dataRegistre = LocalDate.now();
+        } else {
+            try {
+                dataRegistre = LocalDate.parse(textData, FORMAT_DATA);
+            } catch (DateTimeParseException ex) {
+                JOptionPane.showMessageDialog(this,
+                        "La data ha de tenir el format dd/MM/yyyy",
+                        "Data no vàlida", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+        
+        String nomComplet = jTextFieldNom.getText().trim() + " " + jTextFieldLlinatge1.getText().trim() + " " + jTextFieldLlinatge2.getText().trim();
+        
+        try {
+            DataManager.addClient(
+                nomComplet,
+                jTextFieldDNI.getText().trim(),
+                jTextFieldTelefon.getText().trim(),
+                dataRegistre
+            );
+        } catch(BusinessException e) {
+            IO.println(e.getMessage());
+        }
         dispose();
     }//GEN-LAST:event_jButtonAcceptarActionPerformed
 

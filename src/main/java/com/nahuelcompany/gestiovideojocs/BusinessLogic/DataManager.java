@@ -10,6 +10,7 @@ import com.nahuelcompany.gestiovideojocs.dto.Game;
 import com.nahuelcompany.gestiovideojocs.dto.Platform;
 import com.nahuelcompany.gestiovideojocs.dto.Rental;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -23,9 +24,9 @@ public class DataManager {
     private static final List<Game> games = new ArrayList<>();
     private static final List<Rental> rentals = new ArrayList<>();
 
-    private int nextClientId = 1;
-    private int nextGameId = 1;
-    private int nextRentalId = 1;
+    private static int nextClientId = 1;
+    private static int nextGameId = 1;
+    private static int nextRentalId = 1;
 
     public DataManager() {
         loadInitialData();
@@ -45,14 +46,24 @@ public class DataManager {
     
     //Gestió clients
 
-    public Client addClient(String name, String contact) throws BusinessException {
-        if (name == null || name.isBlank() || contact == null || contact.isBlank()) {
-            throw new BusinessException("error.client.incomplete");
-        }
-        Client client = new Client(nextClientId++, name.trim(), contact.trim());
-        clients.add(client);
-        return client;
+    public static Client addClient(String name, String nationalId, String phone, LocalDate registrationDate)
+        throws BusinessException {
+    if (name == null || name.isBlank()
+            || nationalId == null || nationalId.isBlank()
+            || phone == null || phone.isBlank()) {
+        throw new BusinessException("error.client.incomplete");
     }
+    for (Client c : clients) {
+        if (c.getNationalId().equalsIgnoreCase(nationalId.trim())) {
+            throw new BusinessException("error.client.duplicateNationalId");
+        }
+    }
+    LocalDate date = (registrationDate != null) ? registrationDate : LocalDate.now();
+    Client client = new Client(nextClientId++, name.trim(), nationalId.trim().toUpperCase(),
+            phone.trim(), date);
+    clients.add(client);
+    return client;
+}
 
     public void removeClient(Client client) throws BusinessException {
         if (client == null) {
@@ -186,8 +197,8 @@ public class DataManager {
 
     private void loadInitialData() {
         try {
-            Client marc = addClient("Marc Rosselló", "marc@example.com");
-            Client laura = addClient("Laura Vidal", "laura@example.com");
+            Client marc = addClient("Marc Rosselló", "39375629E", "696477333", LocalDate.now());
+            Client laura = addClient("Laura Vidal", "49336654A", "736633533", LocalDate.now());
 
             Map<Platform, Integer> stock1 = new EnumMap<>(Platform.class);
             stock1.put(Platform.PS5, 2);
