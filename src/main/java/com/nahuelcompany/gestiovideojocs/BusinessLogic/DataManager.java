@@ -1,0 +1,211 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.nahuelcompany.gestiovideojocs.BusinessLogic;
+
+import com.nahuelcompany.gestiovideojocs.dto.BusinessException;
+import com.nahuelcompany.gestiovideojocs.dto.Client;
+import com.nahuelcompany.gestiovideojocs.dto.Game;
+import com.nahuelcompany.gestiovideojocs.dto.Platform;
+import com.nahuelcompany.gestiovideojocs.dto.Rental;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
+
+public class DataManager {
+
+    public static final int RENTALDAYS = 7;
+
+    private final List<Client> clients = new ArrayList<>();
+    private final List<Game> games = new ArrayList<>();
+    private final List<Rental> rentals = new ArrayList<>();
+
+    private int nextClientId = 1;
+    private int nextGameId = 1;
+    private int nextRentalId = 1;
+
+    public DataManager() {
+        loadInitialData();
+    }
+
+    public List<Client> getClients() {
+        return clients;
+    }
+
+    public List<Game> getGames() {
+        return games;
+    }
+
+    public List<Rental> getRentals() {
+        return rentals;
+    }
+    
+    //Gestió clients
+
+    public Client addClient(String name, String contact) throws BusinessException {
+        if (name == null || name.isBlank() || contact == null || contact.isBlank()) {
+            throw new BusinessException("error.client.incomplete");
+        }
+        Client client = new Client(nextClientId++, name.trim(), contact.trim());
+        clients.add(client);
+        return client;
+    }
+
+    public void removeClient(Client client) throws BusinessException {
+        if (client == null) {
+            throw new BusinessException("error.client.notSelected");
+        }
+        if (hasActiveRentals(client)) {
+            throw new BusinessException("error.client.activeRentals");
+        }
+        clients.remove(client);
+    }
+
+    public boolean hasActiveRentals(Client client) {
+        for (Rental r : rentals) {
+            if (!r.isReturned() && r.getClient().equals(client)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Gestió de jocs
+
+    public Game addGame(String title, String genre, Map<Platform, Integer> stock)
+            throws BusinessException {
+        if (title == null || title.isBlank()) {
+            throw new BusinessException("error.game.incomplete");
+        }
+        if (stock == null || stock.isEmpty()) {
+            throw new BusinessException("error.game.noPlatforms");
+        }
+        for (int units : stock.values()) {
+            if (units < 0) {
+                throw new BusinessException("error.game.negativeStock");
+            }
+        }
+        Game game = new Game(nextGameId++, title.trim(), genre, stock);
+        games.add(game);
+        return game;
+    }
+
+    public void removeGame(Game game) throws BusinessException {
+        if (game == null) {
+            throw new BusinessException("error.game.notSelected");
+        }
+        if (hasActiveRentals(game)) {
+            throw new BusinessException("error.game.activeRentals");
+        }
+        games.remove(game);
+    }
+
+    public boolean hasActiveRentals(Game game) {
+        for (Rental r : rentals) {
+            if (!r.isReturned() && r.getGame().equals(game)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /** Gestió de plataformes disponibles segons el joc
+     * @param game
+     * @return  */
+    public List<Platform> getAvailablePlatforms(Game game) {
+        List<Platform> available = new ArrayList<>();
+        if (game != null) {
+            for (Map.Entry<Platform, Integer> e : game.getStock().entrySet()) {
+                if (e.getValue() > 0) {
+                    available.add(e.getKey());
+                }
+            }
+        }
+        return available;
+    }
+
+    public int getAvailableUnits(Game game, Platform platform) {
+        return game.getStock().getOrDefault(platform, 0);
+    }
+
+    // -Gestió lloguers
+
+    public Rental rentGame(Client client, Game game, Platform platform) throws BusinessException {
+        if (client == null || game == null || platform == null) {
+            throw new BusinessException("error.rental.incomplete");
+        }
+        if (getAvailableUnits(game, platform) <= 0) {
+            throw new BusinessException("error.rental.noStock");
+        }
+        if (hasActiveRental(client, game)) {
+            throw new BusinessException("error.rental.duplicate");
+        }
+        LocalDate today = LocalDate.now();
+        return createRental(client, game, platform, today, today.plusDays(RENTALDAYS));
+    }
+
+    public void returnRental(Rental rental) throws BusinessException {
+        if (rental == null) {
+            throw new BusinessException("error.return.notSelected");
+        }
+        if (rental.isReturned()) {
+            throw new BusinessException("error.return.alreadyReturned");
+        }
+        rental.setReturned(true);
+        rental.setReturnDate(LocalDate.now());
+        Map<Platform, Integer> stock = rental.getGame().getStock();
+        stock.put(rental.getPlatform(), stock.getOrDefault(rental.getPlatform(), 0) + 1);
+    }
+
+    // Comprovació de si el lloguer ha caducat.
+    public boolean isOverdue(Rental rental) {
+        return !rental.isReturned() && LocalDate.now().isAfter(rental.getDueDate());
+    }
+
+    private boolean hasActiveRental(Client client, Game game) {
+        for (Rental r : rentals) {
+            if (!r.isReturned() && r.getClient().equals(client) && r.getGame().equals(game)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Crea un lloguer i baixa una unitat de les plataformes.
+    private Rental createRental(Client client, Game game, Platform platform, LocalDate start, LocalDate due) {
+        game.getStock().put(platform, game.getStock().get(platform) - 1);
+        Rental rental = new Rental(nextRentalId++, client, game, platform, start, due);
+        rentals.add(rental);
+        return rental;
+    }
+
+    // Carregar dades inicials
+
+    private void loadInitialData() {
+        try {
+            Client marc = addClient("Marc Rosselló", "marc@example.com");
+            Client laura = addClient("Laura Vidal", "laura@example.com");
+
+            Map<Platform, Integer> stock1 = new EnumMap<>(Platform.class);
+            stock1.put(Platform.PS5, 2);
+            stock1.put(Platform.SWITCH_2, 1);
+            Game zelda = addGame("The Legend of Zelda", "Aventura", stock1);
+
+            Map<Platform, Integer> stock2 = new EnumMap<>(Platform.class);
+            stock2.put(Platform.XBOX, 1);
+            stock2.put(Platform.PC, 2);
+            Game halo = addGame("Halo Infinite", "Acció", stock2);
+
+            LocalDate today = LocalDate.now();
+            
+            createRental(marc, zelda, Platform.SWITCH_2, today, today.plusDays(RENTALDAYS));
+            
+            createRental(laura, halo, Platform.XBOX, today.minusDays(14), today.minusDays(7));
+        } catch (BusinessException e) {
+            throw new IllegalStateException("Error carregant les dades inicials", e);
+        }
+    }
+}

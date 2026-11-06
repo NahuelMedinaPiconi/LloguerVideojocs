@@ -4,6 +4,9 @@
  */
 package com.nahuelcompany.gestiovideojocs.gui;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author gerre
@@ -21,11 +24,21 @@ public class MainScreen extends javax.swing.JFrame {
         javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Ninguna celda será editable
+                return false;
             }
         };
     
         jTableLloguers.setModel(model);
+    }
+    
+    private void RefreshTable() {
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm.setColumnIdentifiers(new String[] {"Usuari", "Lloc", "Plataforma", "Data d'inici", "Data prevista", "Estat"});
+        List<ClientManager> clientList = BusinessLogic.getClient();
+        for (ClientManager client : clientList) {
+            dtm.addRow(client.toStringArray());
+        }
+        jTableClients.setModel(dtm);
     }
 
     /**

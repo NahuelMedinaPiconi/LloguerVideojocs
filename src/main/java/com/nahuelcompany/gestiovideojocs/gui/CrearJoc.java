@@ -29,7 +29,6 @@ public class CrearJoc extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroupPlataformes = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabelJocNom = new javax.swing.JLabel();
         jTextFieldJocNom = new javax.swing.JTextField();
@@ -70,25 +69,21 @@ public class CrearJoc extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(237, 242, 247));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Plataformes Disponibles", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(75, 112, 160))); // NOI18N
 
-        buttonGroupPlataformes.add(jCheckBoxPS5);
         jCheckBoxPS5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCheckBoxPS5.setForeground(new java.awt.Color(75, 112, 160));
         jCheckBoxPS5.setText("PS5");
         jCheckBoxPS5.addActionListener(this::jCheckBoxPS5ActionPerformed);
 
-        buttonGroupPlataformes.add(jCheckBoxXbox);
         jCheckBoxXbox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCheckBoxXbox.setForeground(new java.awt.Color(75, 112, 160));
         jCheckBoxXbox.setText("Xbox");
         jCheckBoxXbox.addActionListener(this::jCheckBoxXboxActionPerformed);
 
-        buttonGroupPlataformes.add(jCheckBoxPC);
         jCheckBoxPC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCheckBoxPC.setForeground(new java.awt.Color(75, 112, 160));
         jCheckBoxPC.setText("PC");
         jCheckBoxPC.addActionListener(this::jCheckBoxPCActionPerformed);
 
-        buttonGroupPlataformes.add(jCheckBoxSwitch2);
         jCheckBoxSwitch2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCheckBoxSwitch2.setForeground(new java.awt.Color(75, 112, 160));
         jCheckBoxSwitch2.setText("Switch 2");
@@ -282,7 +277,6 @@ public class CrearJoc extends javax.swing.JDialog {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroupPlataformes;
     private javax.swing.JButton jButtonAcceptar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JCheckBox jCheckBoxPC;
