@@ -5,7 +5,6 @@
 package com.nahuelcompany.gestiovideojocs.gui;
 import com.nahuelcompany.gestiovideojocs.BusinessLogic.DataManager;
 import com.nahuelcompany.gestiovideojocs.dto.BusinessException;
-import com.nahuelcompany.gestiovideojocs.dto.Client;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -21,12 +20,9 @@ import javax.swing.event.DocumentListener;
 public class CrearUsuari extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CrearUsuari.class.getName());
-    private Client usuariCreat = null;   // <-- cambia "Usuari" por el nombre de tu clase
     private static final DateTimeFormatter FORMAT_DATA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-    /**
-     * Creates new form AfegirUsuari
-     */
+    
+    // Creates new form AfegirUsuari
     public CrearUsuari(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();

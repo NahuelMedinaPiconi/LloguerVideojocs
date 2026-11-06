@@ -10,7 +10,6 @@ import com.nahuelcompany.gestiovideojocs.dto.Game;
 import com.nahuelcompany.gestiovideojocs.dto.Platform;
 import com.nahuelcompany.gestiovideojocs.dto.Rental;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -86,7 +85,7 @@ public class DataManager {
 
     // Gestió de jocs
 
-    public Game addGame(String title, String genre, Map<Platform, Integer> stock)
+    public static Game addGame(String title, String genre, Map<Platform, Integer> stock)
             throws BusinessException {
         if (title == null || title.isBlank()) {
             throw new BusinessException("error.game.incomplete");

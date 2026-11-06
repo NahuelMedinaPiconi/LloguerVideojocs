@@ -4,6 +4,18 @@
  */
 package com.nahuelcompany.gestiovideojocs.gui;
 
+import com.nahuelcompany.gestiovideojocs.BusinessLogic.DataManager;
+import com.nahuelcompany.gestiovideojocs.dto.BusinessException;
+import com.nahuelcompany.gestiovideojocs.dto.Platform;
+import java.util.EnumMap;
+import java.util.Map;
+import javax.swing.JCheckBox;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 /**
  *
  * @author gerre
@@ -11,13 +23,69 @@ package com.nahuelcompany.gestiovideojocs.gui;
 public class CrearJoc extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CrearJoc.class.getName());
-
-    /**
-     * Creates new form CrearJoc
-     */
+    
+    
     public CrearJoc(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        jButtonAcceptar.setEnabled(false);
+        configurarValidacio();
+        configurarPlataforma(jCheckBoxPS5, jSpinnerPS5);
+        configurarPlataforma(jCheckBoxXbox, jSpinnerXbox);
+        configurarPlataforma(jCheckBoxPC, jSpinnerPC);
+        configurarPlataforma(jCheckBoxSwitch2, jSpinnerSwitch2);
+    }
+    
+    private void configurarValidacio() {
+        DocumentListener listener = new DocumentListener() {
+            @Override public void insertUpdate(DocumentEvent e) {validarCamps();}
+            @Override public void removeUpdate(DocumentEvent e) {validarCamps();}
+            @Override public void changedUpdate(DocumentEvent e) {validarCamps();}
+        };
+
+        JTextField[] obligatoris = { jTextFieldJocNom, jTextFieldJocGenere };
+        for (JTextField camp : obligatoris) {
+            camp.getDocument().addDocumentListener(listener);
+        }
+    }
+    
+    private void configurarPlataforma(JCheckBox check, JSpinner spinner) {
+        spinner.setEnabled(false);
+
+        check.addActionListener(e -> {
+            SpinnerNumberModel model = (SpinnerNumberModel) spinner.getModel();
+            if (check.isSelected()) {
+                model.setMinimum(1);
+                model.setValue(1);
+                spinner.setEnabled(true);
+            } else {
+                model.setMinimum(0);
+                model.setValue(0);
+                spinner.setEnabled(false);
+            }
+            validarCamps();
+        });
+
+        spinner.addChangeListener(e -> validarCamps());
+    }
+    
+    private void validarCamps() {
+        boolean textosOk =
+            !jTextFieldJocNom.getText().isBlank()
+            && !jTextFieldJocGenere.getText().isBlank();
+
+        boolean algunaPlataforma =
+            plataformaValida(jCheckBoxPS5, jSpinnerPS5)
+            || plataformaValida(jCheckBoxXbox, jSpinnerXbox)
+            || plataformaValida(jCheckBoxPC, jSpinnerPC)
+            || plataformaValida(jCheckBoxSwitch2, jSpinnerSwitch2);
+
+        jButtonAcceptar.setEnabled(textosOk && algunaPlataforma);
+    }
+    
+    private boolean plataformaValida(JCheckBox check, JSpinner spinner) {
+        return check.isSelected() && (int) spinner.getValue() > 0;
     }
 
     /**
@@ -269,7 +337,33 @@ public class CrearJoc extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonAcceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcceptarActionPerformed
-        dispose();
+        Map<Platform, Integer> stock = new EnumMap<>(Platform.class);
+
+        if (jCheckBoxPS5.isSelected()) {
+            stock.put(Platform.PS5, (int) jSpinnerPS5.getValue());
+        }
+        if (jCheckBoxXbox.isSelected()) {
+            stock.put(Platform.XBOX, (int) jSpinnerXbox.getValue());
+        }
+        if (jCheckBoxPC.isSelected()) {
+            stock.put(Platform.PC, (int) jSpinnerPC.getValue());
+        }
+        if (jCheckBoxSwitch2.isSelected()) {
+            stock.put(Platform.SWITCH_2, (int) jSpinnerSwitch2.getValue());
+        }
+
+        try {
+            DataManager.addGame(
+                    jTextFieldJocNom.getText().trim(),
+                    jTextFieldJocGenere.getText().trim(),
+                    stock
+            );
+            dispose();
+        } catch (BusinessException ex) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this, ex.getMessage(), "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonAcceptarActionPerformed
 
     /**
