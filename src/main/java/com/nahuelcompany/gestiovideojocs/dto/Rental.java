@@ -128,4 +128,15 @@ public class Rental {
                 + ", returnDate=" + returnDate
                 + ", returned=" + returned + "}";
     }
+    
+    public String[] toStringArray() {
+        String[] s = new String[5];
+        s[0] = client != null ? client.getName() : "-";
+        s[1] = game != null ? game.getTitle() : "-";
+        s[2] = platform.toString();
+        s[3] = startDate.toString();
+        s[4] = dueDate.toString();
+        s[5] = dueDate.isAfter(LocalDate.now()) && returned == false ? "verd" : "vermell";
+        return s;
+    }
 }

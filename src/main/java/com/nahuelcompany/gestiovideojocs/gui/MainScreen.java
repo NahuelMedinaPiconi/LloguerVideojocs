@@ -4,6 +4,8 @@
  */
 package com.nahuelcompany.gestiovideojocs.gui;
 
+import com.nahuelcompany.gestiovideojocs.BusinessLogic.DataManager;
+import com.nahuelcompany.gestiovideojocs.dto.Rental;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,16 +31,19 @@ public class MainScreen extends javax.swing.JFrame {
         };
     
         jTableLloguers.setModel(model);
+        
+        RefreshTable();
     }
     
     private void RefreshTable() {
         DefaultTableModel dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(new String[] {"Usuari", "Lloc", "Plataforma", "Data d'inici", "Data prevista", "Estat"});
-        List<ClientManager> clientList = BusinessLogic.getClient();
-        for (ClientManager client : clientList) {
-            dtm.addRow(client.toStringArray());
+        List<Rental> rentalList = DataManager.getRentals();
+        for (Rental rental : rentalList) {
+            dtm.addRow(rental.toStringArray());
         }
-        jTableClients.setModel(dtm);
+        jTableLloguers.setModel(dtm);
+        jLabelTotalLloguers.setText(String.valueOf(rentalList.size()));
     }
 
     /**

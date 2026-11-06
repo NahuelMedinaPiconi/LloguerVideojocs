@@ -19,9 +19,9 @@ public class DataManager {
 
     public static final int RENTALDAYS = 7;
 
-    private final List<Client> clients = new ArrayList<>();
-    private final List<Game> games = new ArrayList<>();
-    private final List<Rental> rentals = new ArrayList<>();
+    private static final List<Client> clients = new ArrayList<>();
+    private static final List<Game> games = new ArrayList<>();
+    private static final List<Rental> rentals = new ArrayList<>();
 
     private int nextClientId = 1;
     private int nextGameId = 1;
@@ -31,15 +31,15 @@ public class DataManager {
         loadInitialData();
     }
 
-    public List<Client> getClients() {
+    public static List<Client> getClients() {
         return clients;
     }
 
-    public List<Game> getGames() {
+    public static List<Game> getGames() {
         return games;
     }
 
-    public List<Rental> getRentals() {
+    public static List<Rental> getRentals() {
         return rentals;
     }
     
