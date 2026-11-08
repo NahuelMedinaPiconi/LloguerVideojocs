@@ -34,10 +34,8 @@ public class RegistrarLloguer extends javax.swing.JDialog {
         jTextFieldUsuariElegit.setEnabled(false);
         jTextFieldJocElegit.setEnabled(false);
         actualitzarInfoJoc(null);
-
-        jSpinner1.setEditor(new javax.swing.JSpinner.DateEditor(jSpinner1, "dd/MM/yyyy"));
-        jSpinner2.setEditor(new javax.swing.JSpinner.DateEditor(jSpinner2, "dd/MM/yyyy"));
-        jSpinner2.setValue(java.sql.Date.valueOf(LocalDate.now().plusDays(DataManager.RENTALDAYS)));
+        jSpinnerDataTornada.setEditor(new javax.swing.JSpinner.DateEditor(jSpinnerDataTornada, "dd/MM/yyyy"));
+        jSpinnerDataTornada.setValue(java.sql.Date.valueOf(LocalDate.now().plusDays(DataManager.RENTALDAYS)));
     }
     
     private void actualitzarInfoJoc(Game g) {
@@ -119,10 +117,8 @@ public class RegistrarLloguer extends javax.swing.JDialog {
         jLabelJocElegit = new javax.swing.JLabel();
         jTextFieldJocElegit = new javax.swing.JTextField();
         jButtonSelecJoc = new javax.swing.JButton();
-        jLabelDataInici = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
         jLabelDataInici1 = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
+        jSpinnerDataTornada = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(237, 0, 0));
@@ -310,19 +306,12 @@ public class RegistrarLloguer extends javax.swing.JDialog {
         jButtonSelecJoc.setText("Seleccionar...");
         jButtonSelecJoc.addActionListener(this::jButtonSelecJocActionPerformed);
 
-        jLabelDataInici.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabelDataInici.setForeground(new java.awt.Color(75, 112, 160));
-        jLabelDataInici.setText("Data d'inici:");
-
-        jSpinner1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jSpinner1.setModel(new javax.swing.SpinnerDateModel());
-
         jLabelDataInici1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelDataInici1.setForeground(new java.awt.Color(75, 112, 160));
         jLabelDataInici1.setText("Data de tornada: ");
 
-        jSpinner2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jSpinner2.setModel(new javax.swing.SpinnerDateModel());
+        jSpinnerDataTornada.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jSpinnerDataTornada.setModel(new javax.swing.SpinnerDateModel());
 
         javax.swing.GroupLayout jPanelDadesLloguerLayout = new javax.swing.GroupLayout(jPanelDadesLloguer);
         jPanelDadesLloguer.setLayout(jPanelDadesLloguerLayout);
@@ -332,29 +321,21 @@ public class RegistrarLloguer extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanelDadesLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDadesLloguerLayout.createSequentialGroup()
-                        .addGroup(jPanelDadesLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelDadesLloguerLayout.createSequentialGroup()
-                                .addComponent(jTextFieldJocElegit, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonSelecJoc, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
-                            .addGroup(jPanelDadesLloguerLayout.createSequentialGroup()
-                                .addComponent(jTextFieldUsuariElegit, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonSelecUsuari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanelDadesLloguerLayout.createSequentialGroup()
-                                .addComponent(jLabelJocElegit)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(33, 33, 33))
+                        .addComponent(jTextFieldUsuariElegit, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonSelecUsuari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanelDadesLloguerLayout.createSequentialGroup()
-                        .addComponent(jLabelDataInici)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jTextFieldJocElegit, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonSelecJoc, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
                     .addGroup(jPanelDadesLloguerLayout.createSequentialGroup()
                         .addGroup(jPanelDadesLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelJocElegit)
                             .addComponent(jLabelDataInici1)
-                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSpinnerDataTornada, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelUsuari))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(33, 33, 33))
         );
         jPanelDadesLloguerLayout.setVerticalGroup(
             jPanelDadesLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,20 +346,16 @@ public class RegistrarLloguer extends javax.swing.JDialog {
                 .addGroup(jPanelDadesLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldUsuariElegit, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonSelecUsuari, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(52, 52, 52)
                 .addComponent(jLabelJocElegit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanelDadesLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldJocElegit, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonSelecJoc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(jLabelDataInici)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(jLabelDataInici1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSpinnerDataTornada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56))
         );
 
@@ -469,15 +446,16 @@ public class RegistrarLloguer extends javax.swing.JDialog {
         }
 
         try {
+            //Posam la data de inici automatica, pero la data de termini l'hem de definir al formulari.
             DataManager.rentGame(selectedClient, selectedGame, platform,
-                    toLocalDate(jSpinner1), toLocalDate(jSpinner2));
+                    LocalDate.now(), toLocalDate(jSpinnerDataTornada));
             JOptionPane.showMessageDialog(this, "Lloguer registrat correctament.",
                     "Lloguer", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         } catch (BusinessException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
-            actualitzarInfoJoc(selectedGame);   // refresca por si el stock ha cambiado
+            actualitzarInfoJoc(selectedGame);
         }
     }//GEN-LAST:event_jButtonAcceptarActionPerformed
 
@@ -530,7 +508,6 @@ public class RegistrarLloguer extends javax.swing.JDialog {
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonSelecJoc;
     private javax.swing.JButton jButtonSelecUsuari;
-    private javax.swing.JLabel jLabelDataInici;
     private javax.swing.JLabel jLabelDataInici1;
     private javax.swing.JLabel jLabelGenre;
     private javax.swing.JLabel jLabelJocElegit;
@@ -552,8 +529,7 @@ public class RegistrarLloguer extends javax.swing.JDialog {
     private javax.swing.JRadioButton jRadioButtonSwitch2;
     private javax.swing.JRadioButton jRadioButtonXbox;
     private javax.swing.JRadioButton jRadioButtonps5;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JSpinner jSpinnerDataTornada;
     private javax.swing.JTextField jTextFieldJocElegit;
     private javax.swing.JTextField jTextFieldUsuariElegit;
     // End of variables declaration//GEN-END:variables
