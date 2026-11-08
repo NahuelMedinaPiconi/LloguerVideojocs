@@ -5,6 +5,7 @@
 package com.nahuelcompany.gestiovideojocs.gui;
 import com.nahuelcompany.gestiovideojocs.BusinessLogic.DataManager;
 import com.nahuelcompany.gestiovideojocs.Exceptions.BusinessException;
+import com.nahuelcompany.validationapi.ValidationAPI;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -237,6 +238,22 @@ public class CrearUsuari extends javax.swing.JDialog {
                         "Data no vàlida", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+        }
+        
+        if (!ValidationAPI.eachWordUpperCase(jTextFieldNom.getText())) {
+            JOptionPane.showMessageDialog(this, "El nom ha de començar per majúscula.",
+                    "Dades no vàlides", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (!ValidationAPI.eachWordUpperCase(jTextFieldLlinatge1.getText())) {
+            JOptionPane.showMessageDialog(this, "El primer llinatge ha de començar per majúscula.",
+                    "Dades no vàlides", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (!ValidationAPI.eachWordUpperCase(jTextFieldLlinatge2.getText())) {
+            JOptionPane.showMessageDialog(this, "El segon llinatge ha de començar per majúscula.",
+                    "Dades no vàlides", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         
         String nomComplet = jTextFieldNom.getText().trim() + " " + jTextFieldLlinatge1.getText().trim() + " " + jTextFieldLlinatge2.getText().trim();

@@ -7,6 +7,7 @@ package com.nahuelcompany.gestiovideojocs.gui;
 import com.nahuelcompany.gestiovideojocs.BusinessLogic.DataManager;
 import com.nahuelcompany.gestiovideojocs.Exceptions.BusinessException;
 import com.nahuelcompany.gestiovideojocs.dto.Platform;
+import com.nahuelcompany.validationapi.ValidationAPI;
 import java.util.EnumMap;
 import java.util.Map;
 import javax.swing.JCheckBox;
@@ -337,6 +338,13 @@ public class CrearJoc extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonAcceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcceptarActionPerformed
+        
+        if (!ValidationAPI.eachWordUpperCase(jTextFieldJocGenere.getText())) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "El gènere ha de començar per majúscula.",
+                    "Dades no vàlides", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         Map<Platform, Integer> stock = new EnumMap<>(Platform.class);
 
         if (jCheckBoxPS5.isSelected()) {
