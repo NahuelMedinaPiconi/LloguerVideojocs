@@ -4,6 +4,14 @@
  */
 package com.nahuelcompany.gestiovideojocs.gui;
 
+import com.nahuelcompany.gestiovideojocs.BusinessLogic.DataManager;
+import com.nahuelcompany.gestiovideojocs.Exceptions.BusinessException;
+import com.nahuelcompany.gestiovideojocs.dto.Rental;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author gerre
@@ -11,6 +19,7 @@ package com.nahuelcompany.gestiovideojocs.gui;
 public class TornarLloguer extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TornarLloguer.class.getName());
+    private final List<Rental> activeRentals = new ArrayList<>();
 
     /**
      * Creates new form TornarLloguer
@@ -18,6 +27,53 @@ public class TornarLloguer extends javax.swing.JDialog {
     public TornarLloguer(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        jTableLloguers.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTableLloguers.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                mostrarDetalls();
+            }
+        });
+        carregarTaula();
+    }
+    
+    private void carregarTaula() {
+        activeRentals.clear();
+        DefaultTableModel dtm = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        dtm.setColumnIdentifiers(new String[] {"Usuari", "Joc", "Plataforma", "Data d'inici", "Data prevista", "Estat"});
+        for (Rental r : DataManager.getRentals()) {
+            if (!r.isReturned()) {
+                activeRentals.add(r);
+                dtm.addRow(r.toStringArray());
+            }
+        }
+        jTableLloguers.setModel(dtm);
+        mostrarDetalls();
+    }
+    
+    private Rental getSelectedRental() {
+        int row = jTableLloguers.getSelectedRow();
+        return (row >= 0 && row < activeRentals.size()) ? activeRentals.get(row) : null;
+    }
+    
+    private void mostrarDetalls() {
+        Rental r = getSelectedRental();
+        jButtonTornar.setEnabled(r != null);
+        if (r == null) {
+            jLabelJocName.setText("");
+            jLabelUsuariName.setText("");
+            jLabelPlataformaName.setText("");
+            jLabelDataName.setText("");
+            return;
+        }
+        jLabelJocName.setText(r.getGame().getTitle());
+        jLabelUsuariName.setText(r.getClient().getName());
+        jLabelPlataformaName.setText(String.valueOf(r.getPlatform()));
+        jLabelDataName.setText(String.valueOf(r.getStartDate()));
     }
 
     /**
@@ -210,7 +266,21 @@ public class TornarLloguer extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonTornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTornarActionPerformed
-        dispose();
+        Rental r = getSelectedRental();
+        if (r == null) {
+            JOptionPane.showMessageDialog(this, "Cal seleccionar un lloguer.",
+                    "Dades incompletes", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        try {
+            DataManager.returnRental(r);
+            JOptionPane.showMessageDialog(this, "Lloguer retornat correctament.",
+                    "Lloguer", JOptionPane.INFORMATION_MESSAGE);
+            carregarTaula();   // quita de la lista el lloguer devuelto
+        } catch (BusinessException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonTornarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed

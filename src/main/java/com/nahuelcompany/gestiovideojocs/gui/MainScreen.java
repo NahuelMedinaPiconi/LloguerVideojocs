@@ -6,7 +6,11 @@ package com.nahuelcompany.gestiovideojocs.gui;
 
 import com.nahuelcompany.gestiovideojocs.BusinessLogic.DataManager;
 import com.nahuelcompany.gestiovideojocs.dto.Rental;
+import java.awt.Color;
+import java.awt.Component;
 import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,27 +27,46 @@ public class MainScreen extends javax.swing.JFrame {
     public MainScreen() {
         initComponents();
         
-        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-    
-        jTableLloguers.setModel(model);
         new DataManager();
         RefreshTable();
     }
     
     private void RefreshTable() {
-        DefaultTableModel dtm = new DefaultTableModel();
+        DefaultTableModel dtm = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         dtm.setColumnIdentifiers(new String[] {"Usuari", "Joc", "Plataforma", "Data d'inici", "Data prevista", "Estat"});
         List<Rental> rentalList = DataManager.getRentals();
         for (Rental rental : rentalList) {
             dtm.addRow(rental.toStringArray());
         }
+        
         jTableLloguers.setModel(dtm);
+        jTableLloguers.getColumnModel().getColumn(5).setCellRenderer(new EstatRenderer());
         jLabelTotalLloguers.setText(String.valueOf(rentalList.size()));
+    }
+    
+    private static class EstatRenderer extends DefaultTableCellRenderer {
+
+        private static final Color VERD = new Color(46, 155, 74);
+        private static final Color VERMELL = new Color(210, 60, 60);
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+            
+            super.getTableCellRendererComponent(table, "", isSelected, hasFocus, row, column);
+            setOpaque(true);
+            
+            Color c = VERMELL;
+            if ("verd".equals(value)) c = VERD;
+            else if ("gris".equals(value)) c = new Color(170, 170, 170);
+            setBackground(c);
+            return this;
+        }
     }
 
     /**

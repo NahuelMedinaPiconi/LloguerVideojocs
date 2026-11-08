@@ -4,7 +4,7 @@
  */
 package com.nahuelcompany.gestiovideojocs.BusinessLogic;
 
-import com.nahuelcompany.gestiovideojocs.dto.BusinessException;
+import com.nahuelcompany.gestiovideojocs.Exceptions.BusinessException;
 import com.nahuelcompany.gestiovideojocs.dto.Client;
 import com.nahuelcompany.gestiovideojocs.dto.Game;
 import com.nahuelcompany.gestiovideojocs.dto.Platform;
@@ -50,11 +50,11 @@ public class DataManager {
     if (name == null || name.isBlank()
             || nationalId == null || nationalId.isBlank()
             || phone == null || phone.isBlank()) {
-        throw new BusinessException("error.client.incomplete");
+        throw new BusinessException("S'han d'emplenar els camps obligatoris!");
     }
     for (Client c : clients) {
         if (c.getNationalId().equalsIgnoreCase(nationalId.trim())) {
-            throw new BusinessException("error.client.duplicateNationalId");
+            throw new BusinessException("Aquest client ja existeix!");
         }
     }
     LocalDate date = (registrationDate != null) ? registrationDate : LocalDate.now();
@@ -66,10 +66,10 @@ public class DataManager {
 
     public void removeClient(Client client) throws BusinessException {
         if (client == null) {
-            throw new BusinessException("error.client.notSelected");
+            throw new BusinessException("El client no s'ha seleccionat correctament");
         }
         if (hasActiveRentals(client)) {
-            throw new BusinessException("error.client.activeRentals");
+            throw new BusinessException("El client te lloguers actius actualment.");
         }
         clients.remove(client);
     }
@@ -88,14 +88,14 @@ public class DataManager {
     public static Game addGame(String title, String genre, Map<Platform, Integer> stock)
             throws BusinessException {
         if (title == null || title.isBlank()) {
-            throw new BusinessException("error.game.incomplete");
+            throw new BusinessException("El titol ha de completar-se.");
         }
         if (stock == null || stock.isEmpty()) {
-            throw new BusinessException("error.game.noPlatforms");
+            throw new BusinessException("No hi ha stock.");
         }
         for (int units : stock.values()) {
             if (units < 0) {
-                throw new BusinessException("error.game.negativeStock");
+                throw new BusinessException("El stock és invalid. (negatiu)");
             }
         }
         Game game = new Game(nextGameId++, title.trim(), genre, stock);
@@ -146,26 +146,26 @@ public class DataManager {
     public static Rental rentGame(Client client, Game game, Platform platform,
                             LocalDate start, LocalDate due) throws BusinessException {
         if (client == null || game == null || platform == null || start == null || due == null) {
-            throw new BusinessException("error.rental.incomplete");
+            throw new BusinessException("Has de completar tots els camps.");
         }
         if (due.isBefore(start)) {
-            throw new BusinessException("error.rental.invalidDates");
+            throw new BusinessException("Les no són valides.");
         }
         if (getAvailableUnits(game, platform) <= 0) {
-            throw new BusinessException("error.rental.noStock");
+            throw new BusinessException("No hi ha stock d'aquesta plataforma");
         }
         if (hasActiveRental(client, game)) {
-            throw new BusinessException("error.rental.duplicate");
+            throw new BusinessException("Aquest lloguer ja esta creat!");
         }
         return createRental(client, game, platform, start, due);
     }
 
-    public void returnRental(Rental rental) throws BusinessException {
+    public static void returnRental(Rental rental) throws BusinessException {
         if (rental == null) {
-            throw new BusinessException("error.return.notSelected");
+            throw new BusinessException("Has de mercar qualque lloguer per retornar!");
         }
         if (rental.isReturned()) {
-            throw new BusinessException("error.return.alreadyReturned");
+            throw new BusinessException("Aquest lloguer ja s'ha tornat!");
         }
         rental.setReturned(true);
         rental.setReturnDate(LocalDate.now());
@@ -174,7 +174,7 @@ public class DataManager {
     }
 
     // Comprovació de si el lloguer ha caducat.
-    public boolean isOverdue(Rental rental) {
+    public static boolean isOverdue(Rental rental) {
         return !rental.isReturned() && LocalDate.now().isAfter(rental.getDueDate());
     }
 

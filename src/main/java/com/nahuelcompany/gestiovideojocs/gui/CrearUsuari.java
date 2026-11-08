@@ -4,7 +4,7 @@
  */
 package com.nahuelcompany.gestiovideojocs.gui;
 import com.nahuelcompany.gestiovideojocs.BusinessLogic.DataManager;
-import com.nahuelcompany.gestiovideojocs.dto.BusinessException;
+import com.nahuelcompany.gestiovideojocs.Exceptions.BusinessException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;

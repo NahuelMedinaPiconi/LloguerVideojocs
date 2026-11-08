@@ -136,7 +136,8 @@ public class Rental {
         s[2] = platform.toString();
         s[3] = startDate.toString();
         s[4] = dueDate.toString();
-        s[5] = dueDate.isAfter(LocalDate.now()) && returned == false ? "verd" : "vermell";
+        // Farem que quan un lloguer es rotorni, es marqui de color gris.
+        s[5] = returned ? "gris" : (dueDate.isAfter(LocalDate.now()) ? "verd" : "vermell");
         return s;
     }
 }

@@ -5,7 +5,7 @@
 package com.nahuelcompany.gestiovideojocs.gui;
 
 import com.nahuelcompany.gestiovideojocs.BusinessLogic.DataManager;
-import com.nahuelcompany.gestiovideojocs.dto.BusinessException;
+import com.nahuelcompany.gestiovideojocs.Exceptions.BusinessException;
 import com.nahuelcompany.gestiovideojocs.dto.Platform;
 import java.util.EnumMap;
 import java.util.Map;
