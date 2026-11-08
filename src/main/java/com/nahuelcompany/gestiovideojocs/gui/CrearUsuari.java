@@ -242,7 +242,7 @@ public class CrearUsuari extends javax.swing.JDialog {
         }
         
         if (!ValidationAPI.eachWordUpperCase(jTextFieldNom.getText())) {
-            JOptionPane.showMessageDialog(this, Missatges.get("error.client.incomplete"),
+            JOptionPane.showMessageDialog(this, Missatges.get("error.validation.upperCase"),
                     "Dades no vàlides", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -256,18 +256,28 @@ public class CrearUsuari extends javax.swing.JDialog {
                     "Dades no vàlides", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        if (!ValidationAPI.isValidDni(jTextFieldDNI.getText())) {
+            JOptionPane.showMessageDialog(this, Missatges.get("error.validation.dni"),
+                    "Dades no vàlides", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (!ValidationAPI.isValidPhone(jTextFieldTelefon.getText())) {
+            JOptionPane.showMessageDialog(this, Missatges.get("error.validation.phone"),
+                    "Dades no vàlides", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
         String nomComplet = jTextFieldNom.getText().trim() + " " + jTextFieldLlinatge1.getText().trim() + " " + jTextFieldLlinatge2.getText().trim();
         
         try {
-            DataManager.addClient(
-                nomComplet,
-                jTextFieldDNI.getText().trim(),
-                jTextFieldTelefon.getText().trim(),
-                dataRegistre
-            );
-        } catch(BusinessException e) {
-            IO.println(e.getMessage());
+            DataManager.addClient(nomComplet,
+                    jTextFieldDNI.getText().trim(),
+                    jTextFieldTelefon.getText().trim(),
+                    dataRegistre);
+            dispose();
+        } catch (BusinessException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
         dispose();
     }//GEN-LAST:event_jButtonAcceptarActionPerformed
