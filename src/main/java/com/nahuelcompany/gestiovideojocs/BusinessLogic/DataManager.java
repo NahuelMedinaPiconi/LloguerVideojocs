@@ -137,15 +137,19 @@ public class DataManager {
         return available;
     }
 
-    public int getAvailableUnits(Game game, Platform platform) {
+    public static int getAvailableUnits(Game game, Platform platform) {
         return game.getStock().getOrDefault(platform, 0);
     }
 
     // -Gestió lloguers
 
-    public Rental rentGame(Client client, Game game, Platform platform) throws BusinessException {
-        if (client == null || game == null || platform == null) {
+    public static Rental rentGame(Client client, Game game, Platform platform,
+                            LocalDate start, LocalDate due) throws BusinessException {
+        if (client == null || game == null || platform == null || start == null || due == null) {
             throw new BusinessException("error.rental.incomplete");
+        }
+        if (due.isBefore(start)) {
+            throw new BusinessException("error.rental.invalidDates");
         }
         if (getAvailableUnits(game, platform) <= 0) {
             throw new BusinessException("error.rental.noStock");
@@ -153,8 +157,7 @@ public class DataManager {
         if (hasActiveRental(client, game)) {
             throw new BusinessException("error.rental.duplicate");
         }
-        LocalDate today = LocalDate.now();
-        return createRental(client, game, platform, today, today.plusDays(RENTALDAYS));
+        return createRental(client, game, platform, start, due);
     }
 
     public void returnRental(Rental rental) throws BusinessException {
@@ -175,7 +178,7 @@ public class DataManager {
         return !rental.isReturned() && LocalDate.now().isAfter(rental.getDueDate());
     }
 
-    private boolean hasActiveRental(Client client, Game game) {
+    private static boolean hasActiveRental(Client client, Game game) {
         for (Rental r : rentals) {
             if (!r.isReturned() && r.getClient().equals(client) && r.getGame().equals(game)) {
                 return true;
@@ -185,7 +188,7 @@ public class DataManager {
     }
 
     // Crea un lloguer i baixa una unitat de les plataformes.
-    private Rental createRental(Client client, Game game, Platform platform, LocalDate start, LocalDate due) {
+    private static Rental createRental(Client client, Game game, Platform platform, LocalDate start, LocalDate due) {
         game.getStock().put(platform, game.getStock().get(platform) - 1);
         Rental rental = new Rental(nextRentalId++, client, game, platform, start, due);
         rentals.add(rental);

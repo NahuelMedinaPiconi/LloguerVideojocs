@@ -130,7 +130,7 @@ public class Rental {
     }
     
     public String[] toStringArray() {
-        String[] s = new String[5];
+        String[] s = new String[6];
         s[0] = client != null ? client.getName() : "-";
         s[1] = game != null ? game.getTitle() : "-";
         s[2] = platform.toString();

@@ -80,6 +80,6 @@ public class Game {
 
     @Override
     public String toString() {
-        return "Game{id=" + id + ", title=" + title + ", genre=" + genre + ", stock=" + stock + "}";
+        return title + " (" + genre + ")";
     }
 }

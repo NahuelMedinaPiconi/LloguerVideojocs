@@ -31,13 +31,13 @@ public class MainScreen extends javax.swing.JFrame {
         };
     
         jTableLloguers.setModel(model);
-        
+        new DataManager();
         RefreshTable();
     }
     
     private void RefreshTable() {
         DefaultTableModel dtm = new DefaultTableModel();
-        dtm.setColumnIdentifiers(new String[] {"Usuari", "Lloc", "Plataforma", "Data d'inici", "Data prevista", "Estat"});
+        dtm.setColumnIdentifiers(new String[] {"Usuari", "Joc", "Plataforma", "Data d'inici", "Data prevista", "Estat"});
         List<Rental> rentalList = DataManager.getRentals();
         for (Rental rental : rentalList) {
             dtm.addRow(rental.toStringArray());
@@ -176,6 +176,7 @@ public class MainScreen extends javax.swing.JFrame {
     private void jMenuItemRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRegistrarActionPerformed
         RegistrarLloguer registrar = new RegistrarLloguer(this, true);
         registrar.setVisible(true);
+        RefreshTable();
     }//GEN-LAST:event_jMenuItemRegistrarActionPerformed
 
     private void jMenuItemCrearUsuariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCrearUsuariActionPerformed
@@ -191,6 +192,7 @@ public class MainScreen extends javax.swing.JFrame {
     private void jMenuItemTornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTornarActionPerformed
         TornarLloguer tornar = new TornarLloguer(this, true);
         tornar.setVisible(true);
+        RefreshTable();
     }//GEN-LAST:event_jMenuItemTornarActionPerformed
 
     /**
