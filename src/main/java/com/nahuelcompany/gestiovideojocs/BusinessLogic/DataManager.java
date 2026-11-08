@@ -64,7 +64,7 @@ public class DataManager {
     return client;
 }
 
-    public void removeClient(Client client) throws BusinessException {
+    public static void removeClient(Client client) throws BusinessException {
         if (client == null) {
             throw new BusinessException("El client no s'ha seleccionat correctament");
         }
@@ -74,7 +74,7 @@ public class DataManager {
         clients.remove(client);
     }
 
-    public boolean hasActiveRentals(Client client) {
+    public static boolean hasActiveRentals(Client client) {
         for (Rental r : rentals) {
             if (!r.isReturned() && r.getClient().equals(client)) {
                 return true;
@@ -103,17 +103,17 @@ public class DataManager {
         return game;
     }
 
-    public void removeGame(Game game) throws BusinessException {
+    public static void removeGame(Game game) throws BusinessException {
         if (game == null) {
-            throw new BusinessException("error.game.notSelected");
+            throw new BusinessException("Joc no elegit!");
         }
         if (hasActiveRentals(game)) {
-            throw new BusinessException("error.game.activeRentals");
+            throw new BusinessException("El joc ja té lloguers actius!");
         }
         games.remove(game);
     }
 
-    public boolean hasActiveRentals(Game game) {
+    public static boolean hasActiveRentals(Game game) {
         for (Rental r : rentals) {
             if (!r.isReturned() && r.getGame().equals(game)) {
                 return true;
@@ -197,7 +197,7 @@ public class DataManager {
 
     // Carregar dades inicials
 
-    private void loadInitialData() {
+    private static void loadInitialData() {
         try {
             Client marc = addClient("Marc Rosselló", "39375629E", "696477333", LocalDate.now());
             Client laura = addClient("Laura Vidal", "49336654A", "736633533", LocalDate.now());

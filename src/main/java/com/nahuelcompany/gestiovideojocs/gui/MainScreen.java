@@ -5,10 +5,14 @@
 package com.nahuelcompany.gestiovideojocs.gui;
 
 import com.nahuelcompany.gestiovideojocs.BusinessLogic.DataManager;
+import com.nahuelcompany.gestiovideojocs.Exceptions.BusinessException;
+import com.nahuelcompany.gestiovideojocs.dto.Client;
+import com.nahuelcompany.gestiovideojocs.dto.Game;
 import com.nahuelcompany.gestiovideojocs.dto.Rental;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -159,6 +163,7 @@ public class MainScreen extends javax.swing.JFrame {
         jMenuUsuari.add(jMenuItemCrearUsuari);
 
         jMenuItemBorrarUsuari.setText("Borrar");
+        jMenuItemBorrarUsuari.addActionListener(this::jMenuItemBorrarUsuariActionPerformed);
         jMenuUsuari.add(jMenuItemBorrarUsuari);
 
         jMenuBarMenuPrincipal.add(jMenuUsuari);
@@ -170,6 +175,7 @@ public class MainScreen extends javax.swing.JFrame {
         jMenuJoc.add(jMenuItemCrearJoc);
 
         jMenuItemBorrarJoc.setText("Borrar");
+        jMenuItemBorrarJoc.addActionListener(this::jMenuItemBorrarJocActionPerformed);
         jMenuJoc.add(jMenuItemBorrarJoc);
 
         jMenuBarMenuPrincipal.add(jMenuJoc);
@@ -217,6 +223,52 @@ public class MainScreen extends javax.swing.JFrame {
         tornar.setVisible(true);
         RefreshTable();
     }//GEN-LAST:event_jMenuItemTornarActionPerformed
+
+    private void jMenuItemBorrarUsuariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBorrarUsuariActionPerformed
+        if (DataManager.getClients().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hi ha cap usuari per eliminar.",
+                    "Sense usuaris", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Client[] clients = DataManager.getClients().toArray(new Client[0]);
+        Client c = (Client) JOptionPane.showInputDialog(this,
+                "Selecciona l'usuari a eliminar:", "Eliminar usuari",
+                JOptionPane.PLAIN_MESSAGE, null, clients, null);
+        if (c == null) {
+            return;
+        }
+        try {
+            DataManager.removeClient(c);
+            JOptionPane.showMessageDialog(this, "Usuari eliminat correctament.",
+                    "Usuari", JOptionPane.INFORMATION_MESSAGE);
+        } catch (BusinessException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jMenuItemBorrarUsuariActionPerformed
+
+    private void jMenuItemBorrarJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBorrarJocActionPerformed
+        if (DataManager.getGames().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hi ha cap joc per eliminar.",
+                    "Sense jocs", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Game[] games = DataManager.getGames().toArray(new Game[0]);
+        Game g = (Game) JOptionPane.showInputDialog(this,
+                "Selecciona el joc a eliminar:", "Eliminar joc",
+                JOptionPane.PLAIN_MESSAGE, null, games, null);
+        if (g == null) {
+            return;
+        }
+        try {
+            DataManager.removeGame(g);
+            JOptionPane.showMessageDialog(this, "Joc eliminat correctament.",
+                    "Joc", JOptionPane.INFORMATION_MESSAGE);
+        } catch (BusinessException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jMenuItemBorrarJocActionPerformed
 
     /**
      * @param args the command line arguments
