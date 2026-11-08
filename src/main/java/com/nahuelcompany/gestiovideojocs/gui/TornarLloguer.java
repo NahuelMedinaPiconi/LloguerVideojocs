@@ -6,6 +6,7 @@ package com.nahuelcompany.gestiovideojocs.gui;
 
 import com.nahuelcompany.gestiovideojocs.BusinessLogic.DataManager;
 import com.nahuelcompany.gestiovideojocs.Exceptions.BusinessException;
+import com.nahuelcompany.gestiovideojocs.Missatges;
 import com.nahuelcompany.gestiovideojocs.dto.Rental;
 import java.util.ArrayList;
 import java.util.List;
@@ -268,13 +269,13 @@ public class TornarLloguer extends javax.swing.JDialog {
     private void jButtonTornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTornarActionPerformed
         Rental r = getSelectedRental();
         if (r == null) {
-            JOptionPane.showMessageDialog(this, "Cal seleccionar un lloguer.",
+            JOptionPane.showMessageDialog(this, Missatges.get("error.client.incomplete"),
                     "Dades incompletes", JOptionPane.WARNING_MESSAGE);
             return;
         }
         try {
             DataManager.returnRental(r);
-            JOptionPane.showMessageDialog(this, "Lloguer retornat correctament.",
+            JOptionPane.showMessageDialog(this, Missatges.get("msg.lloguer.retornat"),
                     "Lloguer", JOptionPane.INFORMATION_MESSAGE);
             carregarTaula();   // quita de la lista el lloguer devuelto
         } catch (BusinessException e) {

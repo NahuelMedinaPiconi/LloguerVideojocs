@@ -5,6 +5,7 @@
 package com.nahuelcompany.gestiovideojocs.gui;
 import com.nahuelcompany.gestiovideojocs.BusinessLogic.DataManager;
 import com.nahuelcompany.gestiovideojocs.Exceptions.BusinessException;
+import com.nahuelcompany.gestiovideojocs.Missatges;
 import com.nahuelcompany.validationapi.ValidationAPI;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -234,24 +235,24 @@ public class CrearUsuari extends javax.swing.JDialog {
                 dataRegistre = LocalDate.parse(textData, FORMAT_DATA);
             } catch (DateTimeParseException ex) {
                 JOptionPane.showMessageDialog(this,
-                        "La data ha de tenir el format dd/MM/yyyy",
+                        Missatges.get("error.data.format"),
                         "Data no vàlida", JOptionPane.ERROR_MESSAGE);
                 return;
             }
         }
         
         if (!ValidationAPI.eachWordUpperCase(jTextFieldNom.getText())) {
-            JOptionPane.showMessageDialog(this, "El nom ha de començar per majúscula.",
+            JOptionPane.showMessageDialog(this, Missatges.get("error.client.incomplete"),
                     "Dades no vàlides", JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (!ValidationAPI.eachWordUpperCase(jTextFieldLlinatge1.getText())) {
-            JOptionPane.showMessageDialog(this, "El primer llinatge ha de començar per majúscula.",
+            JOptionPane.showMessageDialog(this, Missatges.get("error.validation.upperCase"),
                     "Dades no vàlides", JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (!ValidationAPI.eachWordUpperCase(jTextFieldLlinatge2.getText())) {
-            JOptionPane.showMessageDialog(this, "El segon llinatge ha de començar per majúscula.",
+            JOptionPane.showMessageDialog(this, Missatges.get("error.validation.upperCase"),
                     "Dades no vàlides", JOptionPane.ERROR_MESSAGE);
             return;
         }

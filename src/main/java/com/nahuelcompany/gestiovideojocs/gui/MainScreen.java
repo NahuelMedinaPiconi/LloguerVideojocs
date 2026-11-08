@@ -6,6 +6,7 @@ package com.nahuelcompany.gestiovideojocs.gui;
 
 import com.nahuelcompany.gestiovideojocs.BusinessLogic.DataManager;
 import com.nahuelcompany.gestiovideojocs.Exceptions.BusinessException;
+import com.nahuelcompany.gestiovideojocs.Missatges;
 import com.nahuelcompany.gestiovideojocs.dto.Client;
 import com.nahuelcompany.gestiovideojocs.dto.Game;
 import com.nahuelcompany.gestiovideojocs.dto.Rental;
@@ -226,7 +227,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void jMenuItemBorrarUsuariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBorrarUsuariActionPerformed
         if (DataManager.getClients().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No hi ha cap usuari per eliminar.",
+            JOptionPane.showMessageDialog(this, Missatges.get("msg.sense.usuaris"),
                     "Sense usuaris", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -239,7 +240,7 @@ public class MainScreen extends javax.swing.JFrame {
         }
         try {
             DataManager.removeClient(c);
-            JOptionPane.showMessageDialog(this, "Usuari eliminat correctament.",
+            JOptionPane.showMessageDialog(this, Missatges.get("msg.usuari.eliminat"),
                     "Usuari", JOptionPane.INFORMATION_MESSAGE);
         } catch (BusinessException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(),
@@ -249,7 +250,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void jMenuItemBorrarJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBorrarJocActionPerformed
         if (DataManager.getGames().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No hi ha cap joc per eliminar.",
+            JOptionPane.showMessageDialog(this, Missatges.get("msg.sense.jocs"),
                     "Sense jocs", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -262,7 +263,7 @@ public class MainScreen extends javax.swing.JFrame {
         }
         try {
             DataManager.removeGame(g);
-            JOptionPane.showMessageDialog(this, "Joc eliminat correctament.",
+            JOptionPane.showMessageDialog(this, Missatges.get("msg.joc.eliminat"),
                     "Joc", JOptionPane.INFORMATION_MESSAGE);
         } catch (BusinessException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(),

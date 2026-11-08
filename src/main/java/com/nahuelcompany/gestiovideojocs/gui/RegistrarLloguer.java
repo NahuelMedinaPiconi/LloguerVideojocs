@@ -6,6 +6,7 @@ package com.nahuelcompany.gestiovideojocs.gui;
 
 import com.nahuelcompany.gestiovideojocs.BusinessLogic.DataManager;
 import com.nahuelcompany.gestiovideojocs.Exceptions.BusinessException;
+import com.nahuelcompany.gestiovideojocs.Missatges;
 import com.nahuelcompany.gestiovideojocs.dto.Client;
 import com.nahuelcompany.gestiovideojocs.dto.Game;
 import com.nahuelcompany.gestiovideojocs.dto.Platform;
@@ -429,18 +430,18 @@ public class RegistrarLloguer extends javax.swing.JDialog {
 
     private void jButtonAcceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcceptarActionPerformed
         if (selectedClient == null) {
-            JOptionPane.showMessageDialog(this, "Cal seleccionar un usuari.",
+            JOptionPane.showMessageDialog(this, Missatges.get("error.client.incomplete"),
                     "Dades incompletes", JOptionPane.WARNING_MESSAGE);
             return;
         }
         if (selectedGame == null) {
-            JOptionPane.showMessageDialog(this, "Cal seleccionar un joc.",
+            JOptionPane.showMessageDialog(this, Missatges.get("error.client.incomplete"),
                     "Dades incompletes", JOptionPane.WARNING_MESSAGE);
             return;
         }
         Platform platform = getSelectedPlatform();
         if (platform == null) {
-            JOptionPane.showMessageDialog(this, "Cal seleccionar una plataforma.",
+            JOptionPane.showMessageDialog(this, Missatges.get("error.client.incomplete"),
                     "Dades incompletes", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -449,7 +450,7 @@ public class RegistrarLloguer extends javax.swing.JDialog {
             //Posam la data de inici automatica, pero la data de termini l'hem de definir al formulari.
             DataManager.rentGame(selectedClient, selectedGame, platform,
                     LocalDate.now(), toLocalDate(jSpinnerDataTornada));
-            JOptionPane.showMessageDialog(this, "Lloguer registrat correctament.",
+            JOptionPane.showMessageDialog(this, Missatges.get("msg.lloguer.registrat"),
                     "Lloguer", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         } catch (BusinessException e) {
@@ -462,7 +463,7 @@ public class RegistrarLloguer extends javax.swing.JDialog {
     private void jButtonSelecUsuariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecUsuariActionPerformed
         if (DataManager.getClients().isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                    "No hi ha cap usuari registrat. Cal crear un primer.",
+                    Missatges.get("msg.sense.usuaris"),
                     "Sense usuaris", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -479,7 +480,7 @@ public class RegistrarLloguer extends javax.swing.JDialog {
     private void jButtonSelecJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecJocActionPerformed
         if (DataManager.getGames().isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                    "No hi ha cap joc registrat. Cal crear-ne un primer.",
+                    Missatges.get("msg.sense.jocs"),
                     "Sense jocs", JOptionPane.WARNING_MESSAGE);
             return;
         }
